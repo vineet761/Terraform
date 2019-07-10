@@ -28,3 +28,13 @@ variable "messageRetentionInDays" {
   default     = 1
 }
 
+variable "consumer_group_name" {
+  description = "(Required) Specifies the name of the EventHub Consumer Group resource. Changing this forces a new resource to be created."
+  default     = "consumer1"
+  
+}
+
+variable "consumer_group_user_metadata" {
+  description = "(Optional) Specifies the consumer group user metadata."
+  default     = "Metadata"
+}

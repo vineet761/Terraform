@@ -29,11 +29,12 @@ resource "azurerm_eventhub" "test" {
   partition_count     = 2
 }
 
-resource "azurerm_eventhub" "test2" {
-  name                = var.name2
-  namespace_name      = azurerm_eventhub_namespace.Evhub.name
-  resource_group_name = data.azurerm_resource_group.hosting.name
-  message_retention   = var.messageRetentionInDays
-  partition_count     = 2
-}
 
+resource "azurerm_eventhub_consumer_group" "ehub_consumer_group" {
+  
+  name                = "${var.consumer_group_name}"
+  namespace_name      = "${azurerm_eventhub_namespace.Evhub.name}"
+  eventhub_name       = "${azurerm_eventhub.test.name}"
+  user_metadata       =  var.consumer_group_user_metadata
+  resource_group_name = data.azurerm_resource_group.hosting.name
+}
