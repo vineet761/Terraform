@@ -19,6 +19,8 @@ provider "azurerm"{
   tenant_id       = ""
   
 }
+
+
 3. Install Azure cli in your system -> https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
 4. Install Terraform in your system ->https://learn.hashicorp.com/terraform/getting-started/install.html
 5. Run the code and Enjoyy !!!!!!
