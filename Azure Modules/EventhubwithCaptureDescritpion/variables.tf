@@ -39,6 +39,23 @@ variable "consumer_group_user_metadata" {
   default     = "Metadata"
 }
 
+variable "account_replication_type" {
+    default = "ZRS"
+  
+}
+variable "sa_name" {
+  
+}
+
+variable "account_kind" { 
+    default = "StorageV2"
+}  
+
+variable "account_tier" {
+    default = "Standard"
+}
+
+
 variable "capture_description" {
   description = " The properties to configure capture description for eventhub"
   type = list( object({

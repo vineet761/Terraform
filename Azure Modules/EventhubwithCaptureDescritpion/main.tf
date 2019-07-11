@@ -30,18 +30,16 @@ resource "azurerm_eventhub" "test" {
 }
 
 resource "azurerm_storage_account" "hosting" {
-  source                   = "terraform.hosting.maersk.com/tsoe/terraform-azure-storage-account/azure"
-  resource_group           = "${module.environment.resource_group_name}"
-  sa_name                  = "${var.sa_name}"
-  account_replication_type = "${var.account_replication_type}"
-  account_tier             = "${var.account_tier}"
-  account_kind             = "${var.account_kind}"
+  resource_group           = data.azurerm_resource_group.hosting.name
+  sa_name                  = var.sa_name
+  account_replication_type = var.account_replication_type
+  account_tier             = var.account_tier
+  account_kind             = var.account_kind
 
 }
 
 
 resource "azurerm_eventhub_consumer_group" "ehub_consumer_group" {
-  
   name                = "${var.consumer_group_name}"
   namespace_name      = "${azurerm_eventhub_namespace.Evhub.name}"
   eventhub_name       = "${azurerm_eventhub.test.name}"
