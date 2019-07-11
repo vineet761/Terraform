@@ -31,10 +31,15 @@ resource "azurerm_eventhub" "test" {
 
 resource "azurerm_storage_account" "hosting" {
   resource_group           = data.azurerm_resource_group.hosting.name
-  sa_name                  = var.sa_name
+  location                 = data.azurerm_resource_group.hosting.location
+  name                     = var.sa_name
   account_replication_type = var.account_replication_type
   account_tier             = var.account_tier
   account_kind             = var.account_kind
+  enable_https_traffic_only = true
+  identity {
+    type = "SystemAssigned"
+  }
 
 }
 
