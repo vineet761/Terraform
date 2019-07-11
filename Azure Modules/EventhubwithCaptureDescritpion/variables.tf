@@ -44,7 +44,7 @@ variable "account_replication_type" {
   
 }
 variable "sa_name" {
-  
+  default= "vinstorage"
 }
 
 variable "account_kind" { 
