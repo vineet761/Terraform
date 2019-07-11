@@ -27,6 +27,26 @@ resource "azurerm_eventhub" "test" {
   resource_group_name = data.azurerm_resource_group.hosting.name
   message_retention   = var.messageRetentionInDays
   partition_count     = 2
+  
+  dynamic "capture_description" {
+  for_each = var.capture_description
+  content {
+    enabled  = true
+    encoding = "Avro"
+    interval_in_seconds = 300
+    size_limit_in_bytes = 314572800
+    skip_empty_archives = true
+
+    destination {
+      name                = "EventHubArchive.AzureBlockBlob"
+      archive_name_format = var.capture_destination_archive_name_format
+      blob_container_name = "blobit"
+      storage_account_id  = module.storageaccount.id
+    }
+  }
+  }
+  
+  
 }
 
 resource "azurerm_storage_account" "hosting" {
