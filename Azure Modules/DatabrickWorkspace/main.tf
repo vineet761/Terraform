@@ -10,7 +10,6 @@ ata "azurerm_resource_group" "hosting" {
   name = var.resource_group
 }
 
-
 resource "azurerm_databricks_workspace" "hosting" {
   name                        = var.name
   location                    = data.azurerm_resource_group.hosting.location
